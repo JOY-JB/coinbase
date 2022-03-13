@@ -9,11 +9,13 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { mainListItems } from "../statics/navtems";
+import { Routes, Route, Link } from "react-router-dom";
+import Trade from "../components/Trade/Trade";
+import { red } from "@mui/material/colors";
 
 const drawerWidth = 240;
 
@@ -67,6 +69,10 @@ const mdTheme = createTheme({
       main: "#fefefefe",
       contrastText: "#004BEB",
     },
+    primary: {
+      main: "#004BEB",
+    },
+    demo: red,
   },
 });
 
@@ -146,9 +152,19 @@ const Dashboard = () => {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <h1>Main content</h1>
-          </Container>
+          <Box sx={{ mx: 2, my: 2 }}>
+            <Routes>
+              <Route path="/" element={<h1>asset content</h1>} />
+              <Route path="/trade" element={<Trade />} />
+              <Route path="/pay" element={<h1>pay content</h1>} />
+              <Route path="/for_you" element={<h1>For You content</h1>} />
+              <Route
+                path="/notification"
+                element={<h1>Notification content</h1>}
+              />
+              <Route path="/get_wallet" element={<h1>Get wallet content</h1>} />
+            </Routes>
+          </Box>
         </Box>
       </Box>
     </ThemeProvider>

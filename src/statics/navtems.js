@@ -8,44 +8,66 @@ import PaidIcon from "@mui/icons-material/Paid";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { Link } from "react-router-dom";
 
 export const mainListItems = (
   <>
-    <ListItemButton sx={{ mx: 1, borderRadius: 2 }}>
+    <ListItemButton component={Link} to={"/"} sx={{ mx: 1, borderRadius: 2 }}>
       <ListItemIcon sx={{ color: "black" }}>
         <PieChartIcon />
       </ListItemIcon>
       <ListItemText primary="Asset" sx={{ color: "black" }} />
     </ListItemButton>
 
-    <ListItemButton sx={{ mx: 1, borderRadius: 2 }}>
+    <ListItemButton
+      component={Link}
+      to={"/trade"}
+      sx={{ mx: 1, borderRadius: 2 }}
+    >
       <ListItemIcon sx={{ color: "black" }}>
         <CurrencyExchangeIcon />
       </ListItemIcon>
       <ListItemText primary="Trade" sx={{ color: "black" }} />
     </ListItemButton>
 
-    <ListItemButton sx={{ mx: 1, borderRadius: 2 }}>
+    <ListItemButton
+      component={Link}
+      to={"/pay"}
+      sx={{ mx: 1, borderRadius: 2 }}
+    >
       <ListItemIcon sx={{ color: "black" }}>
         <PaidIcon />
       </ListItemIcon>
       <ListItemText primary="Pay" sx={{ color: "black" }} />
     </ListItemButton>
 
-    <ListItemButton sx={{ mx: 1, borderRadius: 2 }}>
+    <ListItemButton
+      component={Link}
+      to={"/for_you"}
+      sx={{ mx: 1, borderRadius: 2 }}
+    >
       <ListItemIcon sx={{ color: "black" }}>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="For you" sx={{ color: "black" }} />
     </ListItemButton>
 
-    <ListItemButton sx={{ mx: 1, borderRadius: 2 }}>
+    <ListItemButton
+      component={Link}
+      to={"/notification"}
+      sx={{ mx: 1, borderRadius: 2 }}
+    >
       <ListItemIcon sx={{ color: "black" }}>
         <NotificationsIcon />
       </ListItemIcon>
       <ListItemText primary="Notifications" sx={{ color: "black" }} />
     </ListItemButton>
-    <ListItemButton sx={{ mx: 1, borderRadius: 2 }}>
+
+    <ListItemButton
+      component={Link}
+      to={"/get_wallet"}
+      sx={{ mx: 1, borderRadius: 2 }}
+    >
       <ListItemIcon sx={{ color: "black" }}>
         <AccountBalanceWalletIcon />
       </ListItemIcon>
