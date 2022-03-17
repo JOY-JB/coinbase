@@ -2,6 +2,9 @@ import { Box, Grid } from "@mui/material";
 import React from "react";
 import SetupBar from "./SetupBar";
 import Table from "./Table/Table";
+import SideTabs from "./SideTabs";
+import NewOnCoinbase from "./NewOnCoinbase";
+import RecentTransaction from "./RecentTransaction";
 
 const Trade = () => {
   return (
@@ -27,7 +30,27 @@ const Trade = () => {
               borderColor: "grey.400",
             }}
           >
-            2
+            <SideTabs />
+          </Box>
+          <Box
+            sx={{
+              my: 2,
+              border: 1,
+              borderColor: "grey.400",
+              borderRadius: "5px",
+            }}
+          >
+            <NewOnCoinbase />
+          </Box>
+          <Box
+            sx={{
+              my: 2,
+              border: 1,
+              borderColor: "grey.400",
+              borderRadius: "5px",
+            }}
+          >
+            <RecentTransaction></RecentTransaction>
           </Box>
         </Grid>
       </Grid>

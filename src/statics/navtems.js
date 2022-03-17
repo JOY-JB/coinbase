@@ -8,6 +8,8 @@ import PaidIcon from "@mui/icons-material/Paid";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import RedeemIcon from "@mui/icons-material/Redeem";
 import { Link } from "react-router-dom";
 
 export const mainListItems = (
@@ -22,7 +24,7 @@ export const mainListItems = (
     <ListItemButton
       component={Link}
       to={"/trade"}
-      sx={{ mx: 1, borderRadius: 2 }}
+      sx={{ mx: 1, my: 3, borderRadius: 2 }}
     >
       <ListItemIcon sx={{ color: "black" }}>
         <CurrencyExchangeIcon />
@@ -32,30 +34,8 @@ export const mainListItems = (
 
     <ListItemButton
       component={Link}
-      to={"/pay"}
-      sx={{ mx: 1, borderRadius: 2 }}
-    >
-      <ListItemIcon sx={{ color: "black" }}>
-        <PaidIcon />
-      </ListItemIcon>
-      <ListItemText primary="Pay" sx={{ color: "black" }} />
-    </ListItemButton>
-
-    <ListItemButton
-      component={Link}
-      to={"/for_you"}
-      sx={{ mx: 1, borderRadius: 2 }}
-    >
-      <ListItemIcon sx={{ color: "black" }}>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="For you" sx={{ color: "black" }} />
-    </ListItemButton>
-
-    <ListItemButton
-      component={Link}
       to={"/notification"}
-      sx={{ mx: 1, borderRadius: 2 }}
+      sx={{ mx: 1, my: 3, borderRadius: 2 }}
     >
       <ListItemIcon sx={{ color: "black" }}>
         <NotificationsIcon />
@@ -66,12 +46,12 @@ export const mainListItems = (
     <ListItemButton
       component={Link}
       to={"/get_wallet"}
-      sx={{ mx: 1, borderRadius: 2 }}
+      sx={{ mx: 1, my: 3, borderRadius: 2 }}
     >
       <ListItemIcon sx={{ color: "black" }}>
-        <AccountBalanceWalletIcon />
+        <PersonAddAltIcon />
       </ListItemIcon>
-      <ListItemText primary="Get Wallet" sx={{ color: "black" }} />
+      <ListItemText primary="Invite Friends" sx={{ color: "black" }} />
     </ListItemButton>
   </>
 );

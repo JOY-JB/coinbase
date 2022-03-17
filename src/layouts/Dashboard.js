@@ -16,6 +16,9 @@ import { mainListItems } from "../statics/navtems";
 import { Routes, Route, Link } from "react-router-dom";
 import Trade from "../components/Trade/Trade";
 import { red } from "@mui/material/colors";
+import Assets from "../components/Assets/Assets";
+import { Button } from "@mui/material";
+import SendReceive from "../components/Modal/SendReceive/SendReceive";
 
 const drawerWidth = 240;
 
@@ -64,6 +67,31 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const mdTheme = createTheme({
+  components: {
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          color: "black",
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          top: 0,
+          backgroundColor: "primary.main",
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          padding: 12,
+        },
+      },
+    },
+  },
+
   palette: {
     topbar: {
       main: "#fefefefe",
@@ -74,6 +102,12 @@ const mdTheme = createTheme({
     },
     demo: red,
   },
+  typography: {
+    fontFamily: "'Open Sans', sans-serif",
+    button: {
+      textTransform: "none",
+    },
+  },
 });
 
 const Dashboard = () => {
@@ -81,6 +115,9 @@ const Dashboard = () => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const [modalopen, setModalOpen] = useState(false);
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -104,7 +141,7 @@ const Dashboard = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
+            {/* <Typography
               component="h1"
               variant="h6"
               color="inherit"
@@ -112,11 +149,26 @@ const Dashboard = () => {
               sx={{ flexGrow: 1 }}
             >
               Coinbase
-            </Typography>
+            </Typography> */}
 
-            <IconButton color="inherit">
-              <AccountCircleIcon fontSize="large" />
-            </IconButton>
+            <Box sx={{ ml: "auto" }}>
+              <Button
+                onClick={handleModalOpen}
+                variant="outlined"
+                size="large"
+                sx={{
+                  color: "black",
+                  borderColor: "divider",
+                  fontWeight: 600,
+                }}
+              >
+                Send / Receive
+              </Button>
+
+              <IconButton color="inherit">
+                <AccountCircleIcon fontSize="large" />
+              </IconButton>
+            </Box>
           </Toolbar>
         </AppBar>
 
@@ -129,6 +181,16 @@ const Dashboard = () => {
               px: [1],
             }}
           >
+            <Typography
+              component="h1"
+              variant="h6"
+              color="primary"
+              noWrap
+              sx={{ m: 1, fontWeight: "bold", flexGrow: 1 }}
+            >
+              coinbase
+            </Typography>
+
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
@@ -154,19 +216,17 @@ const Dashboard = () => {
           <Toolbar />
           <Box sx={{ mx: 2, my: 2 }}>
             <Routes>
-              <Route path="/" element={<h1>asset content</h1>} />
+              <Route path="/" element={<Assets />} />
               <Route path="/trade" element={<Trade />} />
-              <Route path="/pay" element={<h1>pay content</h1>} />
-              <Route path="/for_you" element={<h1>For You content</h1>} />
               <Route
                 path="/notification"
                 element={<h1>Notification content</h1>}
               />
-              <Route path="/get_wallet" element={<h1>Get wallet content</h1>} />
             </Routes>
           </Box>
         </Box>
       </Box>
+      <SendReceive modalopen={modalopen} handleModalClose={handleModalClose} />
     </ThemeProvider>
   );
 };
