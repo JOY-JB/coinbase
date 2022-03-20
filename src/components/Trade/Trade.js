@@ -1,17 +1,17 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
-import SetupBar from "./SetupBar";
 import Table from "./Table/Table";
-import SideTabs from "./SideTabs";
 import NewOnCoinbase from "./NewOnCoinbase";
 import RecentTransaction from "./RecentTransaction";
+import SetupBar from "../SetupBar/SetupBar";
+import BuySell from "../SideTabs/BuySell";
 
 const Trade = () => {
   return (
     <Box>
       <SetupBar></SetupBar>
       <Grid container spacing={2} sx={{ my: 1 }}>
-        <Grid item xs={8}>
+        <Grid item xs={12} lg={8}>
           <Box
             sx={{
               border: 1,
@@ -22,16 +22,8 @@ const Trade = () => {
             <Table></Table>
           </Box>
         </Grid>
-        <Grid item xs={4}>
-          <Box
-            sx={{
-              border: 1,
-              borderRadius: "5px",
-              borderColor: "grey.400",
-            }}
-          >
-            <SideTabs />
-          </Box>
+        <Grid item xs={12} lg={4}>
+          <BuySell />
           <Box
             sx={{
               my: 2,

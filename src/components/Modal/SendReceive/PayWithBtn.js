@@ -48,7 +48,7 @@ const PayWithBtn = ({ handlePayOption }) => {
             </Typography>
           </Grid>
 
-          <Grid item>
+          <Grid item xs={1}>
             <KeyboardArrowRightSharpIcon sx={{ color: "black", mt: 1 }} />
           </Grid>
         </Grid>

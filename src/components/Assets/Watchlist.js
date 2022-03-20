@@ -8,18 +8,20 @@ import tableIcons from "../Trade/Table/MaterialTableIcons";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const columns = [
-  { title: "Name", field: "name" },
-  { title: "Price", field: "price", searchable: false },
+  { title: "Name", field: "name", flex: 1 },
+  { title: "Price", field: "price", searchable: false, flex: 1 },
   {
     title: "Change",
     field: "change",
     searchable: false,
     searchable: false,
+    flex: 1,
   },
   {
     title: "Market cap",
     field: "marketcap",
     searchable: false,
+    flex: 1,
   },
   {
     title: "Watch",
@@ -38,6 +40,7 @@ const columns = [
         </Grid>
       </>
     ),
+    flex: 1,
   },
 ];
 const data = [
@@ -64,6 +67,7 @@ const Watchlist = () => {
         data={data}
         icons={tableIcons}
         options={{
+          paginationType: "stepped",
           toolbar: false,
           headerStyle: {
             fontSize: 16,

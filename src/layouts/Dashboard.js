@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -19,6 +19,9 @@ import { red } from "@mui/material/colors";
 import Assets from "../components/Assets/Assets";
 import { Button } from "@mui/material";
 import SendReceive from "../components/Modal/SendReceive/SendReceive";
+import Notifications from "../components/Notifications/Notifications";
+import InviteFriends from "../components/InviteFriends/InviteFriends";
+import Currency from "../components/Pages/Currency";
 
 const drawerWidth = 240;
 
@@ -111,7 +114,8 @@ const mdTheme = createTheme({
 });
 
 const Dashboard = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -141,15 +145,6 @@ const Dashboard = () => {
             >
               <MenuIcon />
             </IconButton>
-            {/* <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Coinbase
-            </Typography> */}
 
             <Box sx={{ ml: "auto" }}>
               <Button
@@ -201,6 +196,7 @@ const Dashboard = () => {
         </Drawer>
 
         {/* main content */}
+
         <Box
           component="main"
           sx={{
@@ -218,10 +214,9 @@ const Dashboard = () => {
             <Routes>
               <Route path="/" element={<Assets />} />
               <Route path="/trade" element={<Trade />} />
-              <Route
-                path="/notification"
-                element={<h1>Notification content</h1>}
-              />
+              <Route path="/notification" element={<Notifications />} />
+              <Route path="/invite_friends" element={<InviteFriends />} />
+              <Route path="/currency" element={<Currency />} />
             </Routes>
           </Box>
         </Box>

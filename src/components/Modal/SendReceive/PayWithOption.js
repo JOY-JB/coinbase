@@ -14,20 +14,27 @@ import tableIcons from "../../Trade/Table/MaterialTableIcons";
 import SearchIcon from "@mui/icons-material/Search";
 import CheckIcon from "@mui/icons-material/Check";
 import CurrencyBitcoinSharpIcon from "@mui/icons-material/CurrencyBitcoinSharp";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: 0,
-  borderRadius: 2,
-  boxShadow: 24,
-  height: "550px",
-};
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const PayWithOption = ({ payOption, setPayOption }) => {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.down("md"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: md ? (sm ? 1 : "50%") : "25%",
+    bgcolor: "background.paper",
+    border: 0,
+    borderRadius: 2,
+    boxShadow: 24,
+    height: "550px",
+  };
+
   const columns = [
     {
       title: "Name",
@@ -244,7 +251,7 @@ const PayWithOption = ({ payOption, setPayOption }) => {
   return (
     <div>
       <Modal hideBackdrop open={payOption} onClose={handleClose}>
-        <Box sx={{ ...style, width: "25%", p: 3 }}>
+        <Box sx={{ ...style, p: 3 }}>
           <Box>
             <ArrowBackIcon
               onClick={handleClose}

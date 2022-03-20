@@ -20,28 +20,35 @@ import PayWithOption from "./PayWithOption";
 import PayWithBtn from "./PayWithBtn";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import EditIcon from "@mui/icons-material/Edit";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "25%",
-  bgcolor: "background.paper",
-  border: 0,
-  boxShadow: 24,
-  height: "550px",
-
-  input: {
-    "&::placeholder": {
-      fontSize: 15,
-      fontWeight: 600,
-      color: "#000000 !important",
-    },
-  },
-};
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SendReceive = ({ modalopen, handleModalClose }) => {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.down("md"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: md ? (sm ? 1 : "50%") : "25%",
+    bgcolor: "background.paper",
+    border: 0,
+    borderRadius: 2,
+    boxShadow: 24,
+    height: "550px",
+
+    input: {
+      "&::placeholder": {
+        fontSize: 15,
+        fontWeight: 600,
+        color: "#000000 !important",
+      },
+    },
+  };
+
   const [payOption, setPayOption] = useState(false);
   const [value, setValue] = useState("1");
   const [sellAmount, setSellAmount] = useState(0);
@@ -105,7 +112,7 @@ const SendReceive = ({ modalopen, handleModalClose }) => {
                     variant="h4"
                     component="span"
                     sx={{
-                      fontSize: 32,
+                      fontSize: 22,
                       fontWeight: 700,
                       mt: 1,
                       color: amount ? "primary.main" : "grey.700",
@@ -125,7 +132,7 @@ const SendReceive = ({ modalopen, handleModalClose }) => {
                     }}
                     inputProps={{
                       style: {
-                        fontSize: "62px",
+                        fontSize: "45px",
                         fontWeight: 500,
                       },
                     }}
@@ -265,7 +272,7 @@ const SendReceive = ({ modalopen, handleModalClose }) => {
                     variant="h4"
                     component="span"
                     sx={{
-                      fontSize: 32,
+                      fontSize: 22,
                       fontWeight: 700,
                       mt: 1,
                       color: amount ? "primary.main" : "grey.700",
@@ -285,7 +292,7 @@ const SendReceive = ({ modalopen, handleModalClose }) => {
                     }}
                     inputProps={{
                       style: {
-                        fontSize: "62px",
+                        fontSize: "45px",
                         fontWeight: 500,
                       },
                     }}

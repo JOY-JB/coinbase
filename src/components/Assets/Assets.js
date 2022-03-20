@@ -8,13 +8,14 @@ import Watchlist from "./Watchlist";
 const Assets = () => {
   return (
     <Grid container spacing={4} sx={{ my: 2 }}>
-      <Grid item xs={8}>
+      <Grid item xs={12} lg={8}>
         <Box
           sx={{
             p: 3,
             border: 1,
             borderColor: "divider",
             borderRadius: 1,
+            width: 1,
           }}
         >
           <Typography variant="h5" fontWeight={600} component="div">
@@ -65,7 +66,7 @@ const Assets = () => {
           <Watchlist></Watchlist>
         </Box>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item sm={12} lg={4}>
         <Box sx={{ p: 3, border: 1, borderColor: "divider", borderRadius: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
@@ -100,7 +101,7 @@ const Assets = () => {
               </Button>
             </Grid>
             <Grid item xs={4}>
-              <CardGiftcardIcon style={{ fontSize: 100 }} />
+              <CardGiftcardIcon style={{ fontSize: 100, width: "100%" }} />
             </Grid>
           </Grid>
         </Box>

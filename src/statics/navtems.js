@@ -45,7 +45,7 @@ export const mainListItems = (
 
     <ListItemButton
       component={Link}
-      to={"/get_wallet"}
+      to={"/invite_friends"}
       sx={{ mx: 1, my: 3, borderRadius: 2 }}
     >
       <ListItemIcon sx={{ color: "black" }}>
