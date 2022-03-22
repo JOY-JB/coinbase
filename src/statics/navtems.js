@@ -4,17 +4,20 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PieChartIcon from "@mui/icons-material/PieChart";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import PaidIcon from "@mui/icons-material/Paid";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
-import RedeemIcon from "@mui/icons-material/Redeem";
 import { Link } from "react-router-dom";
+
+const pathname = window.location.pathname;
 
 export const mainListItems = (
   <>
-    <ListItemButton component={Link} to={"/"} sx={{ mx: 1, borderRadius: 2 }}>
+    <ListItemButton
+      selected={"/" === pathname}
+      component={Link}
+      to={"/"}
+      sx={{ mx: 1, borderRadius: 2 }}
+    >
       <ListItemIcon sx={{ color: "black" }}>
         <PieChartIcon />
       </ListItemIcon>
@@ -22,6 +25,7 @@ export const mainListItems = (
     </ListItemButton>
 
     <ListItemButton
+      selected={"/trade" === pathname}
       component={Link}
       to={"/trade"}
       sx={{ mx: 1, my: 3, borderRadius: 2 }}
@@ -33,6 +37,7 @@ export const mainListItems = (
     </ListItemButton>
 
     <ListItemButton
+      selected={"/notification" === pathname}
       component={Link}
       to={"/notification"}
       sx={{ mx: 1, my: 3, borderRadius: 2 }}
@@ -44,6 +49,7 @@ export const mainListItems = (
     </ListItemButton>
 
     <ListItemButton
+      selected={"/invite_friends" === pathname}
       component={Link}
       to={"/invite_friends"}
       sx={{ mx: 1, my: 3, borderRadius: 2 }}

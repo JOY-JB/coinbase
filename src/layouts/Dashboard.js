@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import React, { useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
-import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
@@ -13,61 +12,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { mainListItems } from "../statics/navtems";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Trade from "../components/Trade/Trade";
 import { red } from "@mui/material/colors";
 import Assets from "../components/Assets/Assets";
-import { Button } from "@mui/material";
+import { Button, Drawer } from "@mui/material";
 import SendReceive from "../components/Modal/SendReceive/SendReceive";
 import Notifications from "../components/Notifications/Notifications";
 import InviteFriends from "../components/InviteFriends/InviteFriends";
 import Currency from "../components/Pages/Currency";
 
 const drawerWidth = 240;
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
-}));
 
 const mdTheme = createTheme({
   components: {
@@ -114,39 +69,71 @@ const mdTheme = createTheme({
 });
 
 const Dashboard = () => {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const toggleDrawer = () => {
-    setOpen(!open);
+    setMobileOpen(!mobileOpen);
   };
   const [modalopen, setModalOpen] = useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
 
+  const drawer = (
+    <div>
+      <Toolbar
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          px: [1],
+        }}
+      >
+        <Typography
+          component="h1"
+          variant="h6"
+          color="primary"
+          noWrap
+          sx={{ m: 1, fontWeight: "bold", flexGrow: 1 }}
+        >
+          coinbase
+        </Typography>
+
+        <IconButton onClick={toggleDrawer} sx={{ display: { sm: "none" } }}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </Toolbar>
+      <Divider />
+
+      <List>{mainListItems}</List>
+    </div>
+  );
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} color={"topbar"}>
-          <Toolbar
-            sx={{
-              pr: "24px",
-            }}
-          >
+        <AppBar
+          position="fixed"
+          color={"topbar"}
+          sx={{
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            ml: { sm: `${drawerWidth}px` },
+          }}
+        >
+          <Toolbar>
             <IconButton
               edge="start"
-              aria-label="open drawer"
               onClick={toggleDrawer}
               color="inherit"
               sx={{
-                marginRight: "36px",
-                ...(open && { display: "none" }),
+                mr: 2,
+                display: { sm: "none" },
               }}
             >
               <MenuIcon />
             </IconButton>
 
-            <Box sx={{ ml: "auto" }}>
+            <Box sx={{ ml: "auto", display: "flex" }}>
               <Button
                 onClick={handleModalOpen}
                 variant="outlined"
@@ -155,6 +142,7 @@ const Dashboard = () => {
                   color: "black",
                   borderColor: "divider",
                   fontWeight: 600,
+                  mr: 2,
                 }}
               >
                 Send / Receive
@@ -167,33 +155,41 @@ const Dashboard = () => {
           </Toolbar>
         </AppBar>
 
-        <Drawer variant="permanent" open={open}>
-          <Toolbar
+        <Box
+          component="nav"
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        >
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={toggleDrawer}
+            ModalProps={{
+              keepMounted: true,
+            }}
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
             }}
           >
-            <Typography
-              component="h1"
-              variant="h6"
-              color="primary"
-              noWrap
-              sx={{ m: 1, fontWeight: "bold", flexGrow: 1 }}
-            >
-              coinbase
-            </Typography>
-
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-
-          <List component="nav">{mainListItems}</List>
-        </Drawer>
+            {drawer}
+          </Drawer>
+          <Drawer
+            variant="permanent"
+            open
+            sx={{
+              display: { xs: "none", sm: "block" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Box>
 
         {/* main content */}
 
@@ -206,6 +202,7 @@ const Dashboard = () => {
                 : theme.palette.grey[900],
             flexGrow: 1,
             height: "100vh",
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
             overflow: "auto",
           }}
         >
